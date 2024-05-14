@@ -22,12 +22,22 @@ canvas.addEventListener('click', function(e) {
         number_dec = Math.floor(Math.random()*255)+1;
         showUI();
     }
-
-
-    console.log(cursor);
 });
 
+canvas.addEventListener('mousemove', function(e) {
+
+    cursor.x = e.offsetX;
+    cursor.y = e.offsetY;
+
+    if (cursor.x >= 1030 && cursor.x <= 1150 && cursor.y >= 730 && cursor.y <= 780){
+        canvas.style.cursor = 'pointer';
+    }else canvas.style.cursor = 'default';
+});
+
+
 function showUI(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     ctx.font = "42px Arial";
     ctx.fillStyle = "#FFD38D";
     ctx.fillText("Liczba dziesiętna do przedstawienia binarnego: " + number_dec, 30, 770);
