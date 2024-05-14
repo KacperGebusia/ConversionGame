@@ -8,11 +8,14 @@ const cursor = {
 
 canvas.addEventListener('click', function(e) {
 
-    let game_rect = canvas.getBoundingClientRect();
-    cursor.x = e.clientX - game_rect.left;
-    cursor.y = e.clientY - game_rect.top;
+    // let game_rect = canvas.getBoundingClientRect();
+    // cursor.x = e.clientX - game_rect.left;
+    // cursor.y = e.clientY - game_rect.top;
 
-    console.log(cursor.x, cursor.y);
+    cursor.x = e.offsetX;
+    cursor.y = e.offsetY;
+
+    console.log(cursor);
 });
 
 
