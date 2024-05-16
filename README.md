@@ -7,3 +7,5 @@ Pomysły:
 1. Tryb "Walka z czasem" - na każde ustawienie jest jakiś czas i potem tabela wyników z datą itd
 2. Zapisywanie licznika zwycięstw i tabeli trybu Walka z czasem do pliku lokalnie
 
+dorobić limit fps: bit.ly/canvas-limit-fps
+
