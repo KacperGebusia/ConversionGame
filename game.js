@@ -16,6 +16,11 @@ const cursor = {
     y: 0
 }
 
+const key = {
+    a: {pressed: false},
+    d: {pressed: false}
+}
+
 
 class Character{
     
@@ -29,6 +34,9 @@ class Character{
 
     draw(){
         ctx.drawImage(this.img, this.frame*165, 0, 165, 200, this.pos.x, this.pos.y, 165, 200);
+
+        if(key.d.pressed) this.pos.x += 8;
+        if(key.a.pressed) this.pos.x -= 8;
         
         if(this.frame < this.maxframes) this.frame++;
         else this.frame = 0;
@@ -68,6 +76,31 @@ canvas.addEventListener('mousemove', function(e) {
         canvas.style.cursor = 'pointer';
     }else canvas.style.cursor = 'default';
 });
+
+window.addEventListener('keydown', function(e) {
+
+    if(e.key == 'a' || e.key == 'ArrowLeft'){
+        key.a.pressed = true;
+    }
+
+    if(e.key == 'd' || e.key == 'ArrowRight'){
+        key.d.pressed = true;
+    }
+
+});
+
+window.addEventListener('keyup', function(e) {
+
+    if(e.key == 'a' || e.key == 'ArrowLeft'){
+        key.a.pressed = false;
+    }
+
+    if(e.key == 'd' || e.key == 'ArrowRight'){
+        key.d.pressed = false;
+    }
+
+});
+
 
 
 function showUI(){
