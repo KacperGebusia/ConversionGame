@@ -1,7 +1,8 @@
 Zmiany w porównaniu z oryginalnym kursem:
-1. użycie offsetX i offsetY
-2. Poziomy trudności
-3. Licznik zwycięstw
+1. Użycie offsetX i offsetY
+2. Dodanie możliwości sterowania WAD lub strzałkami oraz skakania spacją
+3. Poziomy trudności
+4. Licznik zwycięstw
 
 Pomysły:
 1. Tryb "Walka z czasem" - na każde ustawienie jest jakiś czas i potem tabela wyników z datą itd
