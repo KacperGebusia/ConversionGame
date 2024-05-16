@@ -4,6 +4,8 @@ const ctx = canvas.getContext('2d');
 // Raccoon assets on CC license, you can find graphics here:
 // https://null-painter-error.itch.io/cute-raccoon-2d-game-sprite-and-animations
 
+const img_back = new Image();
+img_back.src = 'assets/background.png';
 
 const img_idle = new Image();
 img_idle.src = 'assets/idle.png';
@@ -144,6 +146,9 @@ function showUI(){
 function animate(){
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.drawImage(img_back, 0, 0);
+
     showUI();
 
     racoon.draw();
