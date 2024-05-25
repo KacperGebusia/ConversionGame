@@ -16,6 +16,12 @@ img_walk_r.src = 'assets/walk_r.png';
 const img_walk_l = new Image();
 img_walk_l.src = 'assets/walk_l.png';
 
+const img_on = new Image();
+img_on.src = 'assets/on.png';
+
+const img_off = new Image();
+img_off.src = 'assets/off.png';
+
 
 let number_dec = Math.floor(Math.random()*255)+1;
 
@@ -65,6 +71,22 @@ class Character{
     }
 }
 
+class Button{
+
+    constructor({img, pos, nr}){
+        this.img = img;
+        this.pos = pos;
+        this.nr = nr;
+        this.value = 0;
+    }
+
+    draw(){
+        ctx.drawImage(this.img, this.nr*150, 110);
+    }
+
+}
+
+
 const racoon = new Character({
     img: img_idle,
     pos: {
@@ -72,6 +94,18 @@ const racoon = new Character({
         y: 485
     }
 })
+
+let buttons = [];
+
+for(let i = 0; i < 8; i++){
+    buttons.push(
+        new Button({
+            img: img_off,
+            pos: { x: 150, y: 0 },
+            nr: i
+        })
+    )
+}
 
 
 canvas.addEventListener('click', function(e) {
@@ -150,6 +184,10 @@ function animate(){
     ctx.drawImage(img_back, 0, 0);
 
     showUI();
+
+    for(let i = 0; i < 8; i++){
+        buttons[i].draw();
+    }
 
     racoon.draw();
     
