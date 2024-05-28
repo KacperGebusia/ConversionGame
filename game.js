@@ -32,7 +32,8 @@ const cursor = {
 
 const key = {
     a: {pressed: false},
-    d: {pressed: false}
+    d: {pressed: false},
+    w: {pressed: false}
 }
 
 let current_key = '';
@@ -46,6 +47,27 @@ class Character{
         this.frame = 0;
         this.maxframes = 10;
         this.state = 'idle';
+        this.velocity = 0;
+        this.weight = 1;
+    }
+
+    isStanding(){
+        return this.pos.y >= 485;
+    }
+
+    jump(){
+        if(key.w.pressed && this.isStanding()) this.velocity = -19;
+
+        this.pos.y += this.velocity;
+
+        if(!this.isStanding()){
+            this.velocity += this.weight;
+        }
+        else{
+            this.velocity = 0;
+            this.state = 'idle';
+        }
+
     }
 
     draw(){
@@ -61,6 +83,9 @@ class Character{
             if(this.pos.x <= 0) this.pos.x = 0;
             racoon.state = 'walk_l';
         }
+        if(key.w.pressed && current_key == 'w') {
+            racoon.state = 'jump';
+        }
 
         if(this.state == 'idle') this.img = img_idle;
         if(this.state == 'walk_r') this.img = img_walk_r;
@@ -68,6 +93,8 @@ class Character{
         
         if(this.frame < this.maxframes) this.frame++;
         else this.frame = 0;
+
+        this.jump();
     }
 }
 
@@ -145,6 +172,11 @@ window.addEventListener('keydown', function(e) {
         current_key = 'd';
     }
 
+    if(e.key == 'w' || e.key == 'ArrowUp' || e.key == ' '){
+        key.w.pressed = true;
+        current_key = 'w';
+    }
+
 });
 
 window.addEventListener('keyup', function(e) {
@@ -156,6 +188,11 @@ window.addEventListener('keyup', function(e) {
 
     if(e.key == 'd' || e.key == 'ArrowRight'){
         key.d.pressed = false;
+        racoon.state = 'idle';
+    }
+
+    if(e.key == 'w' || e.key == 'ArrowUp' || e.key == ' '){
+        key.w.pressed = false;
         racoon.state = 'idle';
     }
 
