@@ -49,6 +49,7 @@ class Character{
         this.state = 'idle';
         this.velocity = 0;
         this.weight = 1;
+        this.switched = false;
     }
 
     isStanding(){
@@ -62,10 +63,33 @@ class Character{
 
         if(!this.isStanding()){
             this.velocity += this.weight;
+            this.switchButton();
         }
         else{
             this.velocity = 0;
             this.state = 'idle';
+            this.switched = false;
+        }
+
+    }
+
+    switchButton(){
+        for(let i = 0; i < 8; i++){
+            let start = i * 150;
+            let end = i * 150 + 150;
+
+            if(this.pos.x + 80 >= start && this.pos.x + 80 <= end && this.pos.y <= 300 && !this.switched){
+                if(buttons[i].value == 0){
+                    buttons[i].value = 1;
+                    buttons[i].img = img_on;
+                }
+                else{
+                    buttons[i].value = 0;
+                    buttons[i].img = img_off;
+                }
+                this.switched = true;
+            }
+            
         }
 
     }
