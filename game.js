@@ -25,6 +25,22 @@ img_off.src = 'assets/off.png';
 
 let number_dec = Math.floor(Math.random()*255)+1;
 
+function checkWin(){
+    let current_dec_value = 0;
+    for(let i = 0; i < 8; i++){
+        current_dec_value += buttons[i].value * Math.pow(2, 7-i);
+    }
+
+    if(current_dec_value == number_dec){
+
+        ctx.fillStyle = "#32140F";
+        ctx.fillRect(300, 20, 630, 70);
+        ctx.fillStyle = "#FFD38D";
+        ctx.font = "48px Arial";
+        ctx.fillText("Poprawna liczba! Wygrałeś", 330, 70);
+    }
+}
+
 const cursor = {
     x: 0,
     y: 0
@@ -89,9 +105,7 @@ class Character{
                 }
                 this.switched = true;
             }
-            
         }
-
     }
 
     draw(){
@@ -252,7 +266,7 @@ function animate(){
 
     racoon.draw();
     
-
+    checkWin();
 
 
 
