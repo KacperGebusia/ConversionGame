@@ -31,6 +31,11 @@ function checkWin(){
         current_dec_value += buttons[i].value * Math.pow(2, 7-i);
     }
 
+    ctx.fillStyle = "#FFD38D";
+    ctx.font = "32px Arial";
+    ctx.fillText(current_dec_value, 15, 40);
+
+
     if(current_dec_value == number_dec){
 
         ctx.fillStyle = "#32140F";
